@@ -9,6 +9,8 @@ var routes = require('./routes/index')
 var users = require('./routes/users')
 
 var app = express()
+var http = require('http').Server(app)
+var io = require('socket.io')(http)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -30,6 +32,13 @@ app.use(function (req, res, next) {
   var err = new Error('Not Found')
   err.status = 404
   next(err)
+})
+
+// socket.io
+io.on('connection', function (socket) {
+  socket.on('chat message', function (msg) {
+    io.emit('chat message', msg)
+  })
 })
 
 // error handlers
@@ -54,6 +63,10 @@ app.use(function (err, req, res, next) {
     message: err.message,
     error: {}
   })
+})
+
+http.listen(3000, function () {
+  console.log('listening on *:3000')
 })
 
 module.exports = app
