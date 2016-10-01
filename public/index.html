@@ -2,35 +2,30 @@
 <html>
   <head>
     <meta charset='utf-8'>
+    <link rel = 'stylesheet' href = './stylesheets/main.css'></script>
     <link rel = 'stylesheet' href = './stylesheets/chat.css'></script>
+    <link rel = 'stylesheet' href = './stylesheets/board.css'></script>
   </head>
   <body>
-    <div id='message'>
-      <h1>Welcome to Strategito</h1>
+    <div id = 'wrapper'>
+      <div id='header'>
+        <h1>Welcome to Strategito</h1>
+      </div>
+      <table id='game'></table>
+
+      <!-- chat widget begin -->
+      <ul id="messages">
+        <h1>Chat</h1>
+      </ul>
+      <form action="">
+        <input id="m" autocomplete="off" /><button>Send</button>
+      </form>
+      <!-- chat widget end -->
     </div>
-    <table id='game'></table>
-
-    <!-- chat widget begin -->
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
-    <!-- chat widget end -->
-
     <script type='text/javascript' src='./javascripts/jsboard.js'></script>
     <script src='./javascripts/index.js'></script>
     <script src='/socket.io/socket.io.js'></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-    <script>
-      var socket = io()
-      $('form').submit(function(){
-        socket.emit('chat message', $('#m').val())
-        $('#m').val('')
-        return false
-      })
-      socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg))
-      })
-    </script>
+    <script src="javascripts/chat.js"></script>
   </body>
 </html>
