@@ -27833,7 +27833,7 @@
 
 	var accepts = __webpack_require__(399);
 	var deprecate = __webpack_require__(353)('express');
-	var isIP = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"net\""); e.code = 'MODULE_NOT_FOUND'; throw e; }())).isIP;
+	var isIP = __webpack_require__(363).isIP;
 	var typeis = __webpack_require__(408);
 	var http = __webpack_require__(313);
 	var fresh = __webpack_require__(376);
@@ -102532,7 +102532,7 @@
 	  , WebSocket = __webpack_require__(536)
 	  , Extensions = __webpack_require__(551)
 	  , PerMessageDeflate = __webpack_require__(544)
-	  , tls = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"tls\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+	  , tls = __webpack_require__(363)
 	  , url = __webpack_require__(336);
 
 	/**
