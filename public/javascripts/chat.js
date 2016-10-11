@@ -1,4 +1,7 @@
-var socket = io()
+import $ from 'jquery'
+var io = require('socket.io-client')
+var socket = io('http://localhost:3000')
+
 $('form').submit(function () {
   socket.emit('chat message', $('#m').val())
   $('#m').val('')
