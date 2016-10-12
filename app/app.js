@@ -1,12 +1,13 @@
 const express = require('express')
 const path = require('path')
-// var favicon = require('serve-favicon')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
+const api = require('../api')
+// var favicon = require('serve-favicon')
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'))
@@ -30,12 +31,8 @@ app.use(function (req, res, next) {
   next(err)
 })
 
-// socket.io
-io.on('connection', function (socket) {
-  socket.on('chat message', function (msg) {
-    io.emit('chat message', msg)
-  })
-})
+// Socket middleware
+api.bootstrap(io)
 
 // error handlers
 
