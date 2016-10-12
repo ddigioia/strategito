@@ -16214,10 +16214,13 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
+	var _api = __webpack_require__(353);
+
+	var _api2 = _interopRequireDefault(_api);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var io = __webpack_require__(301);
-	var socket = io('http://localhost:3000');
+	var socket = _api2.default.socket;
 
 	(0, _jquery2.default)('form').submit(function () {
 	  socket.emit('chat message', (0, _jquery2.default)('#m').val());
@@ -26459,6 +26462,19 @@
 	return jQuery;
 	} );
 
+
+/***/ },
+/* 353 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var io = __webpack_require__(301);
+	var socket = io('http://localhost:3000');
+
+	module.exports = {
+	  socket: socket
+	};
 
 /***/ }
 /******/ ]);
