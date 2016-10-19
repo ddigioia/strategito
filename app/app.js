@@ -7,7 +7,19 @@ const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const api = require('../api')
+const webpack = require('webpack')
+const webpackDevMiddleware = require('webpack-dev-middleware')
+
 // var favicon = require('serve-favicon')
+
+var compiler = webpack({
+  output: { path: '/' }
+})
+
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: '/'
+}))
+
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'))
