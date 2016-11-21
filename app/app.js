@@ -7,7 +7,23 @@ const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const api = require('../api')
+const webpack = require('webpack')
+const webpackConfig = require('../webpack.config')
+const webpackDevMiddleware = require('webpack-dev-middleware')
+
 // var favicon = require('serve-favicon')
+console.log('LOG: ', 1234)
+// compiler object
+var compiler = webpack({
+  output: { path: '/' }
+})
+
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: '/'
+}))
+
+// Attaches hot-middleware to server
+app.use(require('webpack-hot-middleware')(compiler))
 
 // view engine setup
 app.set('views', path.join(__dirname, '../views'))

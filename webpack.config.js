@@ -1,8 +1,11 @@
+const webpack = require('webpack')
+
 module.exports = {
-  entry: ['babel-polyfill', './public/javascripts/main.js'],
+  entry: ['babel-polyfill', 'webpack-hot-middleware/client', './public/javascripts/main.js'],
   output: {
     path: './public',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: '/'
   },
   module: {
     loaders: [
@@ -21,6 +24,11 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ],
   node: {
     fs: 'empty',
     net: 'empty',
