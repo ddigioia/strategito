@@ -25,7 +25,7 @@ var whitePieces = [
 for (var i = 0; i < 8; i++) {
   whitePieces.push(pawn.clone())
 }
-
+console.log(3)
 // place pieces on board
 b.cell([7, 1]).place(whitePieces[0])
 b.cell([7, 6]).place(whitePieces[1])
@@ -63,26 +63,24 @@ function showMoves (piece) {
   loc = b.cell(piece.parentNode).where()
 
   // movement for king
-  if (thisPiece === 'WG') {
-    newLocs.push(
-      [loc[0] - 1, loc[1]], [loc[0] + 1, loc[1]],
-      [loc[0], loc[1] - 1], [loc[0], loc[1] + 1],
-      [loc[0] - 1, loc[1] - 1], [loc[0] - 1, loc[1] + 1],
-      [loc[0] + 1, loc[1] - 1], [loc[0] + 1, loc[1] + 1]
-    )
-  }
+  newLocs.push(
+    [loc[0] - 1, loc[1]], [loc[0] + 1, loc[1]],
+    [loc[0], loc[1] - 1], [loc[0], loc[1] + 1],
+    [loc[0] - 1, loc[1] - 1], [loc[0] - 1, loc[1] + 1],
+    [loc[0] + 1, loc[1] - 1], [loc[0] + 1, loc[1] + 1]
+  )
 
   // remove illegal moves by checking
   // content of b.cell().get()
-  (function removeIllegalMoves (arr) {
-    var fixedLocs = []
-    for (var i = 0; i < arr.length; i++) {
-      if (b.cell(arr[i]).get() === null) {
-        fixedLocs.push(arr[i])
-      }
-    }
-    newLocs = fixedLocs
-  })(newLocs)
+  // (function removeIllegalMoves (arr) {
+  //   var fixedLocs = []
+  //   for (var i = 0; i < arr.length; i++) {
+  //     if (b.cell(arr[i]).get() === null) {
+  //       fixedLocs.push(arr[i])
+  //     }
+  //   }
+  //   newLocs = fixedLocs
+  // })(newLocs)
 
   // bind green spaces to movement of piece
   bindMoveLocs = newLocs.slice()

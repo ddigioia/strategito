@@ -1,12 +1,22 @@
 const webpack = require('webpack')
+const path = require('path')
 
 module.exports = {
-  entry: ['babel-polyfill', 'webpack-hot-middleware/client', './public/javascripts/main.js'],
+  entry: [
+    'babel-polyfill',
+    'webpack-hot-middleware/client',
+    // './public/javascripts/main.js'
+    './public/javascripts/main.js'
+  ],
   output: {
-    path: './public',
+    // path: '/',
+    // path: './public',
+    path: path.join(__dirname, '/public'),
+    // path: path.join(__dirname, '/'),
     filename: 'bundle.js',
     publicPath: '/'
   },
+  watch: true,
   module: {
     loaders: [
       {
