@@ -7,29 +7,18 @@ const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const api = require('../api')
+
+/* Webpack */
 const webpack = require('webpack')
 const webpackConfig = require('../webpack.config')
-const webpackDevMiddleware = require('webpack-dev-middleware')
-
-// var favicon = require('serve-favicon')
-console.log('LOG: ', 1234)
-// compiler object
-var compiler = webpack({
-  output: { path: '/' }
-})
-
-app.use(webpackDevMiddleware(compiler, {
-  publicPath: '/'
-}))
-
-// Attaches hot-middleware to server
+const compiler = webpack(webpackConfig)
+app.use(require('webpack-dev-middleware')(compiler))
 app.use(require('webpack-hot-middleware')(compiler))
 
 // view engine setup
-app.set('views', path.join(__dirname, '../views'))
-app.set('view engine', 'jade')
+// app.set('views', path.join(__dirname, '../views'))
+// app.set('view engine', 'jade')
 
-// uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(logger('dev'))
 app.use(bodyParser.json())

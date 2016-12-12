@@ -25,7 +25,7 @@ var whitePieces = [
 for (var i = 0; i < 8; i++) {
   whitePieces.push(pawn.clone())
 }
-
+console.log(3)
 // place pieces on board
 b.cell([7, 1]).place(whitePieces[0])
 b.cell([7, 6]).place(whitePieces[1])
@@ -62,108 +62,25 @@ function showMoves (piece) {
   var loc
   loc = b.cell(piece.parentNode).where()
 
-  // movement for knights
-  // if (thisPiece === 'WK') {
-  //   newLocs.push(
-  //     [loc[0] - 1, loc[1] - 2], [loc[0] - 1, loc[1] + 2],
-  //     [loc[0] - 2, loc[1] - 1], [loc[0] - 2, loc[1] + 1],
-  //     [loc[0] + 1, loc[1] - 2], [loc[0] + 1, loc[1] + 2],
-  //     [loc[0] + 2, loc[1] - 1], [loc[0] + 2, loc[1] + 1]
-  //   )
-  // }
-
-  // movement for pawns
-  // if (thisPiece === 'WP') {
-  //   newLocs.push([loc[0] - 1, loc[1]])
-  //   if (loc[0] === 6) newLocs.push([loc[0] - 2, loc[1]])
-  // }
-
-  // movement for bishops
-  // queen also moves like a bishop
-  // if (thisPiece === 'WB' || thisPiece === 'WQ') {
-  //   var check = 7
-  //   // up left diagonal
-  //   var ULD = [loc[0] - 1, loc[1] - 1]
-  //   while (check > 0) {
-  //     if (b.cell(ULD).get() === null) { newLocs.push(ULD); ULD = [ULD[0] - 1, ULD[1] - 1]; }
-  //     check--
-  //   }
-  //   check = 7
-  //   // up right diagonal
-  //   var URD = [loc[0] - 1, loc[1] + 1]
-  //   while (check > 0) {
-  //     if (b.cell(URD).get() === null) { newLocs.push(URD); URD = [URD[0] - 1, URD[1] + 1]; }
-  //     check--
-  //   }
-  //   check = 7
-  //   // down left diagonal
-  //   var DLD = [loc[0] + 1, loc[1] - 1]
-  //   while (check > 0) {
-  //     if (b.cell(DLD).get() === null) { newLocs.push(DLD); DLD = [DLD[0] + 1, DLD[1] - 1]; }
-  //     check--
-  //   }
-  //   check = 7
-  //   // down right diagonal
-  //   var DRD = [loc[0] + 1, loc[1] + 1]
-  //   while (check > 0) {
-  //     if (b.cell(DRD).get() === null) { newLocs.push(DRD); DRD = [DRD[0] + 1, DRD[1] + 1]; }
-  //     check--
-  //   }
-  // }
-
-  // movement for rooks
-  // queen also moves like a rook
-  // if (thisPiece === 'WR' || thisPiece === 'WQ') {
-  //   var check = 7
-  //   var U = [loc[0] - 1, loc[1]]
-  //   while (check > 0) {
-  //     if (b.cell(U).get() === null) { newLocs.push(U); U = [U[0] - 1, U[1]]; }
-  //     check--
-  //   }
-  //   check = 7
-  //   // up right diagonal
-  //   var L = [loc[0], loc[1] - 1]
-  //   while (check > 0) {
-  //     if (b.cell(L).get() === null) { newLocs.push(L); L = [L[0], L[1] - 1]; }
-  //     check--
-  //   }
-  //   check = 7
-  //   // down left diagonal
-  //   var R = [loc[0], loc[1] + 1]
-  //   while (check > 0) {
-  //     if (b.cell(R).get() === null) { newLocs.push(R); R = [R[0], R[1] + 1]; }
-  //     check--
-  //   }
-  //   check = 7
-  //   // down right diagonal
-  //   var D = [loc[0] + 1, loc[1]]
-  //   while (check > 0) {
-  //     if (b.cell(D).get() === null) { newLocs.push(D); D = [D[0] + 1, D[1]]; }
-  //     check--
-  //   }
-  // }
-
   // movement for king
-  if (thisPiece === 'WG') {
-    newLocs.push(
-      [loc[0] - 1, loc[1]], [loc[0] + 1, loc[1]],
-      [loc[0], loc[1] - 1], [loc[0], loc[1] + 1],
-      [loc[0] - 1, loc[1] - 1], [loc[0] - 1, loc[1] + 1],
-      [loc[0] + 1, loc[1] - 1], [loc[0] + 1, loc[1] + 1]
-    )
-  }
+  newLocs.push(
+    [loc[0] - 1, loc[1]], [loc[0] + 1, loc[1]],
+    [loc[0], loc[1] - 1], [loc[0], loc[1] + 1],
+    [loc[0] - 1, loc[1] - 1], [loc[0] - 1, loc[1] + 1],
+    [loc[0] + 1, loc[1] - 1], [loc[0] + 1, loc[1] + 1]
+  )
 
   // remove illegal moves by checking
   // content of b.cell().get()
-  (function removeIllegalMoves (arr) {
-    var fixedLocs = []
-    for (var i = 0; i < arr.length; i++) {
-      if (b.cell(arr[i]).get() === null) {
-        fixedLocs.push(arr[i])
-      }
-    }
-    newLocs = fixedLocs
-  })(newLocs)
+  // (function removeIllegalMoves (arr) {
+  //   var fixedLocs = []
+  //   for (var i = 0; i < arr.length; i++) {
+  //     if (b.cell(arr[i]).get() === null) {
+  //       fixedLocs.push(arr[i])
+  //     }
+  //   }
+  //   newLocs = fixedLocs
+  // })(newLocs)
 
   // bind green spaces to movement of piece
   bindMoveLocs = newLocs.slice()
