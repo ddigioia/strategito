@@ -7,7 +7,7 @@ const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const api = require('../api')
-
+const favicon = require('serve-favicon')
 /* Webpack */
 const webpack = require('webpack')
 const webpackConfig = require('../webpack.config')
@@ -19,7 +19,7 @@ app.use(require('webpack-hot-middleware')(compiler))
 // app.set('views', path.join(__dirname, '../views'))
 // app.set('view engine', 'jade')
 
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+app.use(favicon(path.join(__dirname, '../public', 'favicon.ico')))
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
